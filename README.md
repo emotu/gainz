@@ -25,7 +25,7 @@ To run the application, execute the following command from the root directory of
     uvicorn app.main:app --reload
 ```
 
-### Execution Steps
+### Completed Tasks
 The rest and websocket endpoints of the app can be tested as a standalone using `postman`. 
 This backend application implements the following tasks, per the test requirements:
 
