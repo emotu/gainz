@@ -9,6 +9,8 @@ clone the project and run:
 pip install -r requirements.txt
 ```
 
+You can also (optionally) install MongoDB.
+
 Once the project is installed, create a `.env` file at the root of the project, with the following variables:
 
 | Key                      | Description                    |          |
