@@ -11,14 +11,12 @@ class Settings(BaseSettings):
     API_NAME: str = "Gainz Fitness AI Training Assistant"
     API_VERSION: str = "v1.0.0"
     API_AUTHOR: str = "Emotu Balogun"
-    OPENAI_API_KEY: str
-    DATABASE_URI: str
-    DATABASE_NAME: str
+    OPENAI_API_KEY: str | None = None
+    DATABASE_URI: str | None = None
+    DATABASE_NAME: str | None = None
     JWT_SECRET_KEY: str
     JWT_ALGORITHM: str
     JWT_EXPIRES_IN_HOURS: int
-    REDIS_URL: str
-    WEBSOCKETS_CACHE: str
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 

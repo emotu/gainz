@@ -16,7 +16,7 @@ async def client_socket(*, websocket: WebSocket, thread_id: str, token: Annotate
     await websocket.accept()
     try:
         current_user = await get_user_from_token(token)
-        client_id = str(current_user.id)
+        user_id = str(current_user.id)
         await manager.connect(client_id=thread_id, websocket=websocket)
 
         while True:
@@ -29,6 +29,7 @@ async def client_socket(*, websocket: WebSocket, thread_id: str, token: Annotate
                 background_tasks.add_task(post_user_message, thread_id=thread_id, message=message)
 
             if action == "run" and assistant_id is not None:
-                await stream_assistant_runs(thread_id=thread_id, client_id=client_id, assistant_id=assistant_id, manager=manager)
+                await stream_assistant_runs(thread_id=thread_id, user_id=user_id,
+                                            assistant_id=assistant_id, manager=manager)
     except WebSocketDisconnect:
         await websocket.close()
