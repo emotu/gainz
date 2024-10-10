@@ -12,6 +12,11 @@ from app.models import User
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
 
+class DummyUser(BaseModel):
+    id: str
+    username: str
+
+
 class LoginForm(BaseModel):
     username: str
 
@@ -53,7 +58,7 @@ async def authenticate_user(username: str, password: str) -> User | bool:
     return user
 
 
-async def get_user_from_token(token: str) -> User | None:
+async def get_user_from_token(token: str) -> User | DummyUser:
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
@@ -67,9 +72,11 @@ async def get_user_from_token(token: str) -> User | None:
         raise credentials_exception
 
     user_id = payload.get("sub")
-    user = await User.get(user_id)
-    if not user:
-        raise credentials_exception
+    user = DummyUser(id=user_id, username=payload.get("username"))
+
+    # user = await User.get(user_id)
+    # if not user:
+    #     raise credentials_exception
 
     return user
 
