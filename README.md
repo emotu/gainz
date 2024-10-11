@@ -14,7 +14,7 @@ You can also (optionally) install MongoDB.
 Once the project is installed, create a `.env` file at the root of the project, with the following variables:
 
 | Key                      | Description                    |          |
-|--------------------------|--------------------------------|----------|
+|:-------------------------|:-------------------------------|:---------|
 | OPENAI_API_KEY           | Your Open AI API key           | Required |
 | DATABASE_URI             | MongoDB Connection URI         | Optional |
 | DATABASE_NAME            | MongoDB Database Name          | Optional |
