@@ -6,9 +6,9 @@ from openai.types.beta import Thread
 from openai.types.beta.threads import Run
 from pydantic import BaseModel
 from starlette import status
-
+from app.services.manager import manager
 from app.models import User
-from app.services.auth import get_authenticated_user, get_current_user
+from app.services.auth import get_authenticated_user, get_current_user, DummyUser
 from app.services.runs import stream_assistant_runs
 
 router = APIRouter(prefix="/threads", tags=["threads"], dependencies=[Depends(get_authenticated_user)])
@@ -94,13 +94,13 @@ async def retrieve_run(thread_id: str, run_id: str):
 
 @router.post("/{thread_id}/run")
 async def run_thread(thread_id: str, payload: RunAssistantForm,
-                     current_user: Annotated[User, Depends(get_current_user)],
+                     current_user: Annotated[DummyUser, Depends(get_authenticated_user)],
                      background_tasks: BackgroundTasks):
     try:
         thread = client.beta.threads.retrieve(thread_id)
         assistant = client.beta.assistants.retrieve(payload.assistant_id)
-        background_tasks.add_task(stream_assistant_runs, assistant=assistant, client_id=str(current_user.id),
-                                  thread_id=thread.id, assistant_id=assistant.id)
+        background_tasks.add_task(stream_assistant_runs, assistant_id=assistant.id,
+                                  user_id=current_user.id, thread_id=thread.id, manager=manager)
 
         return dict(status="ok")
 
