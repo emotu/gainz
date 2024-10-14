@@ -2,6 +2,13 @@
 
 The test application is implemented in such a way that it can be run with no external dependencies. 
 This is INTENTIONAL, as the aim is to showcase an OpenAI & Websockets integration, built as a FastAPI application.
+In production, the app will connect to a database, caching (redis) layer, a message broker (e.g. kafka/rabbitmq)
+
+### User Interface
+The user interface application is located here:
+[https://github.com/emotu/gainz-ui](https://github.com/emotu/gainz-ui)
+
+Installation and launch instructions can be found in the README.md of the project. 
 
 ### Setup & Installation
 clone the project and run:
@@ -63,9 +70,3 @@ This backend application implements the following tasks, per the test requiremen
 - [x] **API Endpoints**
   - [x] Create an endpoint to initialize a new conversation (creates a new Thread).
   - [x] Implement an endpoint to send a message to an existing Thread.
-
-## User Interface
-The user interface application is located here:
-[https://github.com/emotu/gainz-ui](https://github.com/emotu/gainz-ui)
-
-Installation and launch instructions can be found in the README.md of the project. 
