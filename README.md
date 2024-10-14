@@ -70,3 +70,8 @@ This backend application implements the following tasks, per the test requiremen
 - [x] **API Endpoints**
   - [x] Create an endpoint to initialize a new conversation (creates a new Thread).
   - [x] Implement an endpoint to send a message to an existing Thread.
+
+- [x] Frontend (Simple HTML/JavaScript client for demonstration)
+  - [x] Create a simple HTML page with JavaScript to demonstrate the WebSocket connection. 
+  - [x] Implement the ability to send messages to the backend. 
+  - [x] Display streamed responses from the Assistant in real time.
