@@ -50,13 +50,13 @@ class EventHandler(AsyncAssistantEventHandler):
     @override
     async def on_text_created(self, event: AssistantStreamEvent) -> None:
         print(f"\n{self.assistant.name} > ", end="", flush=True)
-        await self.manager.broadcast_message(self.client_id, action="start", message="", role="system", sender=self.assistant.name)
+        await self.manager.broadcast_message(self.client_id, action="start", message="", role="assistant", sender=self.assistant.name)
 
     @override
     async def on_text_delta(self, delta: TextDelta, snapshot: Text) -> None:
         print(delta.value, end="", flush=True)
-        await self.manager.broadcast_message(self.client_id, action="body", message=delta.value, role="system", sender=self.assistant.name)
+        await self.manager.broadcast_message(self.client_id, action="body", message=delta.value, role="assistant", sender=self.assistant.name)
 
     async def on_text_done(self, text: Text) -> None:
         print("\n--\n", end="", flush=True)
-        await self.manager.broadcast_message(self.client_id, action="stop", message="--", role="system", sender=self.assistant.name)
+        await self.manager.broadcast_message(self.client_id, action="stop", message="--", role="assistant", sender=self.assistant.name)

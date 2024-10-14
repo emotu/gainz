@@ -13,7 +13,6 @@ router = APIRouter(prefix="/ws", tags=["websockets"])
 @router.websocket("/{thread_id}")
 async def client_socket(*, websocket: WebSocket, thread_id: str, token: Annotated[str, Query()],
                         background_tasks: BackgroundTasks):
-    await websocket.accept()
     try:
         current_user = await get_user_from_token(token)
         user_id = str(current_user.id)
@@ -32,4 +31,5 @@ async def client_socket(*, websocket: WebSocket, thread_id: str, token: Annotate
                 await stream_assistant_runs(thread_id=thread_id, user_id=user_id,
                                             assistant_id=assistant_id, manager=manager)
     except WebSocketDisconnect:
-        await websocket.close()
+        print("Exception called")
+        await manager.disconnect(client_id=thread_id, websocket=websocket)
