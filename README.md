@@ -63,3 +63,9 @@ This backend application implements the following tasks, per the test requiremen
 - [x] **API Endpoints**
   - [x] Create an endpoint to initialize a new conversation (creates a new Thread).
   - [x] Implement an endpoint to send a message to an existing Thread.
+
+## User Interface
+The user interface application is located here:
+[https://github.com/emotu/gainz-ui](https://github.com/emotu/gainz-ui)
+
+Installation and launch instructions can be found in the README.md of the project. 
